@@ -1,0 +1,59 @@
+{% extends '/base.html.jinja' %}
+{% block main %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Toetsvraag</title>
+    <link rel="stylesheet" href= "{{ url_for('static', filename='control-question-style.css') }}">
+</head>
+
+<body>
+    <div class="control-box">
+        <div class = "title-box">
+            <h1>Toetsvraag</h1>
+
+        </div>
+            <div class = "text-box">
+                <p>{{ single_question["question"] }}</p>
+            </div>
+
+        <div class = title-box>
+            <h1>AI output</h1>
+        </div>
+            {%if bloom_category %}
+                <div class="gpt-box">
+                    <h2>GPT Analyse voor Bloom's Taxonomie</h2>
+                    <p><strong>Niveau:</strong> {{ bloom_category['niveau'] }}</p>
+                    <p><strong>Uitleg:</strong> {{ bloom_category['uitleg'] }}</p>
+                </div>
+            {% endif %}
+
+            <form method="post" action="/taxonomy/save/{{ single_question["questions_id"] }}/{{ prompt_type }}">
+                <label for="taxonomy">Keuze taxonomie:</label>
+                    {%if bloom_category %}
+                        <input type="hidden" value="{{ bloom_category['niveau'] }}" name="gpt_taxonomy">
+                        <input type="hidden" value="{{ form_prompt_id }}" name="form_prompt_id">
+                    {% endif %}
+                    <select id="taxonomy" name="taxonomy">
+                        {% if prompt_type == 'Bloom' %}
+                            <option value="Onthouden">Onthouden</option>
+                            <option value="Begrijpen">Begrijpen</option>
+                            <option value="Toepassen">Toepassen</option>
+                            <option value="Analyseren">Analyseren</option>
+                            <option value="Evalueren">Evalueren</option>
+                            <option value="Creëren">Creëren</option>
+                        {% elif prompt_type == 'RTTI' %}
+                            <option value="Reproductie">Reproductie</option>
+                            <option value="Training">Training</option>
+                            <option value="Transfer">Transfer</option>
+                            <option value="Inzicht">Inzicht</option>
+                        {% endif %}
+                    </select>
+                <input type="submit" class="taxonomy-save-button" value="Taxonomie opslaan">
+
+            </form>
+
+    </div>
+
+{% endblock %}

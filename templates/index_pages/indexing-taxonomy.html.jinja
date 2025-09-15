@@ -1,0 +1,23 @@
+{% extends '/base.html.jinja' %}
+{% block main %}
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='indexing-taxonomy-style.css') }}">
+
+    <div class="index-box">
+        <h1> Toetsvraag</h1>
+       <p>{{ single_question.question }}</p>
+    </div>
+
+    <form method="post" action="/taxonomy/check/{{ single_question.questions_id }}/{{ prompt_type }}">
+        <label for="prompts">Prompts:</label>
+        <select id="prompts" name="prompts">
+            {% for prompt in prompts %}
+                <option value="{{ prompt.prompts_id }}">{{ prompt.prompt_name }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" class="index-button" value="Indexeren">
+    </form>
+
+
+{% endblock %}

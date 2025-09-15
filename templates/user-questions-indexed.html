@@ -1,0 +1,42 @@
+{% extends '/base.html.jinja' %}
+{% block styles %}
+    <link rel="stylesheet" href="../../static/questions_pages_static/question_style.css"/>
+{% endblock %}
+
+{% block main %}
+
+    <h1>Vragen beoordeeld door {{ username }}</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Vraag</th>
+            <th>vak</th>
+            <th>leerjaar</th>
+            <th>niveau</th>
+            <th>Invoer datum</th>
+            <th>Taxonomie Bloom</th>
+            <th>RTTI</th>
+
+        </tr>
+    </thead>
+    <tbody class="questiontablebody">
+        {% for question in questions %}
+        <tr>
+            <td>{{ question.question }}</td>
+            <td>{{ question.subject }}</td>
+            <td>{{ question.school_year }}</td>
+            <td>{{ question.education_level }}</td>
+            <td>{{ question.date_created }}</td>
+            <td>
+                {{ question.taxonomy_bloom }}
+            </td>
+            <td>
+                {{ question.rtti }}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+    <br>
+{% endblock %}

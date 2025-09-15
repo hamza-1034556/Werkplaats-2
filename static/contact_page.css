@@ -1,0 +1,136 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #F2F6FF;
+    margin: 0;
+    padding: 0;
+}
+
+.divScroll {
+    overflow: scroll;
+    height: 80vh;
+    padding: 20px;
+}
+
+.contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.contact-left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #FFFFFF;
+    padding: 20px;
+    width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-left-title h2 {
+    font-weight: 600;
+    color: #041F74;
+    font-size: 30px;
+    text-align: center;
+}
+
+
+.contact-left-title hr {
+    border: none;
+    width: 120px;
+    height: 4px;
+    background-color: #041F74;
+    border-radius: 10px;
+    margin: 10px auto 20px;
+}
+
+
+.contact-inputs {
+    width: 100%;
+    height: 45px;
+    border: 1px solid #CCC;
+    padding-left: 20px;
+    font-size: 16px;
+    color: #333;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+.contact-left textarea {
+    height: 120px;
+    padding-top: 12px;
+    border-radius: 4px;
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    resize: vertical;
+}
+
+.contact-inputs:focus {
+    border-color: #041F74;
+}
+
+button {
+    background-color: #041F74;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2c3e50;
+}
+
+.flash-messages {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    max-width: 300px;
+    width: 100%;
+}
+
+.flash-messages ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.flash-messages li {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.flash-messages .success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.flash-messages .error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.flash-messages .close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 20px;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+}
+

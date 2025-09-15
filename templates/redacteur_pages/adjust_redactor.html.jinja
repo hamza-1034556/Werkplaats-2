@@ -1,0 +1,46 @@
+{% extends '/base.html.jinja' %}
+{% block main %}
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wijzig Redacteur</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='adjust_redactor.css') }}">
+</head>
+<body>
+    <div class="container">
+        <img src="../../static/images/change-redactor.png" alt="Team Jongbelegen" class="change-redactor-image">
+        <h2>Wijzig redacteur</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('update_redacteur') }}" method="post">
+            <label for="naam">Naam</label>
+            <input type="text" id="naam" name="naam" value="{{ user.display_name }}" required>
+
+            <label for="email">Email / login</label>
+            <input type="email" id="email" name="email" value="{{ user.login }}" required>
+
+            <label for="wachtwoord">Wachtwoord</label>
+            <input type="password" id="wachtwoord" name="wachtwoord" placeholder="Wachtwoord wijzigen (optioneel)">
+
+            <div class="admin-field">
+                <label for="is_admin">Is admin?</label>
+                <label class="switch">
+                    <input type="checkbox" id="is_admin" name="is_admin" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <button type="submit" class="submit-btn">Opslaan</button>
+        </form>
+    </div>
+</body>
+</html>
+{% endblock %}

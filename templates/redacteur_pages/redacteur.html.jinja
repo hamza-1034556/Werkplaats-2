@@ -1,0 +1,63 @@
+{% extends '/base.html.jinja' %}
+
+{% block main %}
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redacteuren Beheer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/redacteur.css') }}">
+
+    <style>
+        .questions-link{
+            text-decoration: none;
+            color: white;
+            background-color: #3DDB56;
+            border: none;
+            padding: 5px 8px;
+            border-radius: 4px;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Redacteuren Beheer</h2>
+        <form method="POST" action="{{ url_for('update_redacteur_admin') }}">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Redacteur</th>
+                        <th>Loginnaam</th>
+                        <th>Admin</th>
+                        <th>Acties</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for redacteur in redacteurs %}
+                    <tr>
+                        <td>{{ redacteur.display_name }}</td>
+                        <td>{{ redacteur.login }}</td>
+                        <td>
+                            <input type="checkbox" name="is_admin_{{ redacteur.login }}" value="1"
+                            {% if redacteur.is_admin == 1 %} checked {% endif %}>
+                        </td>
+                        <td>
+                            <button type="submit" name="delete_redacteur" value="{{ redacteur.login }}" class="delete-btn">Verwijder</button>
+                            <button type="submit" name="update_admin" class="save-btn">Opslaan</button>
+                            <a class='questions-link' href="/{{ redacteur.user_id }}/indexed-questions">Vragen</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </form>
+        <div class="buttons">
+            <a href="{{ url_for('adjust_redactor') }}" class="action-btn">Wijzig eigen gegevens</a>
+            <a href="{{ url_for('add_redacteur') }}" class="action-btn">Nieuwe redacteur</a>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

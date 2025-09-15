@@ -1,0 +1,44 @@
+:root {
+    --color-dark-blue: #041F74;
+    --color-blue: #004DF5;
+    --color-green: #3DBB56;
+    --color-yellow: #FFE01B;
+    --color-red: #FF7972;
+    --color-light-blue: #F2F6FF;
+    --color-white: #FFFFFF;
+}
+
+h1 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    font-size: 50px;
+}
+
+h2 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    background-color: var(--color-light-blue)
+}
+
+button {
+    font-size: 18px;
+    background-color: var(--color-green);
+    color: var(--color-white);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--color-green);
+
+}
+
+

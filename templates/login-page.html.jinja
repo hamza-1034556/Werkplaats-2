@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="../static/login-style.css"/>
+</head>
+<body>
+<section>
+    <div class="login-box">
+        <h1>Inloggen</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <form method="post">
+
+            <label for="login-input">Email</label>
+            <input id='login-input' name="login-input" type="email">
+
+
+            <label for="password-input">Wachtwoord</label>
+            <input id='password-input' name="password-input" type="password">
+
+            <input type="submit" class="login-button" value="Inloggen">
+        </form>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,96 @@
+.image-section {
+    background-image: url(" ../static/images/classroom.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-section h1 {
+    font-size: 3em;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+}
+section.homepage-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.homepage-container {
+    text-align: center;
+    max-width: 1600px;
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2.2em;
+    color: #041F74;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+
+p {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    line-height: 1.6;
+    color: #041F74;
+    max-width: 800px;
+    margin: 0 auto 20px;
+    text-align: justify;
+}
+
+p1 {
+    font-size: 1.0em;
+    margin-bottom: 15px;
+    line-height: 1.6;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.features {
+    margin-top: 25px;
+}
+
+.features h2 {
+    font-size: 1.5em;
+    color: #041F74;
+    margin-bottom: 10px;
+    margin-top: 100px;
+    margin-right: 545px;
+}
+
+.features ul {
+    list-style-type: none;
+    padding: 0;
+    color: #041F74;
+}
+
+.features li {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    line-height: 1.5;
+    color: #041F74;
+    max-width: 800px;
+    margin: 0 auto 5px;
+    text-align: justify;
+}
+
+.ai-image {
+    max-width: 400px;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 22px;
+    margin-left: 800px;
+    margin-top: -175px;
+}

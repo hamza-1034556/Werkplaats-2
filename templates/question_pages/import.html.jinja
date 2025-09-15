@@ -1,0 +1,22 @@
+{% extends '/base.html.jinja' %}
+{% block main %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Import questions</title>
+    <link rel="stylesheet" href="../../static/questions_pages_static/question_style.css"/>
+</head>
+
+<body>
+<h1>Importeer toetsvragen</h1>
+<form method="POST" action="/import" enctype="multipart/form-data">
+      <label for="file">Kies een bestand</label>
+      <input type="file" name="file" accept=".json" required>
+      <button type="submit">Importeer</button>
+</form>
+</body>
+</html>
+
+{% endblock %}

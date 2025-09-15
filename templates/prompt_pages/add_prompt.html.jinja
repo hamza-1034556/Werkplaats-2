@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>prompt page</title>
+    <link rel="stylesheet" href="../../static/prompt_pages_static/add_new_prompt_page.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Create a New Prompt</h1>
+        <div class="prompt-container">
+            <form action="/prompts/submit" method="post">
+
+                <label for="prompt_name">Prompt-name:</label>
+                <input name="prompt_name" id="prompt_name" required><br>
+
+                <label for="prompt_text">Prompt-text:</label>
+                <textarea name="prompt_text" id="prompt_text" required></textarea><br>
+
+                <label for="prompt_type">Prompt-type:</label>
+                <select name="prompt_type" id="prompt_type" required>
+                    <option value="" disabled selected >Selecteer het type indexeringsysteem</option>
+                    <option value="Bloom">Bloom</option>
+                    <option value="RTTI">RTTI</option>
+                    <!-- add more indexing types here -->
+
+                </select><br>
+
+                <input type="submit" value="submit">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

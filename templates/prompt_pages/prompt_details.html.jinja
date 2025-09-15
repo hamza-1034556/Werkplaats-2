@@ -1,0 +1,38 @@
+{% extends '/base.html.jinja' %}
+{% block main %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>show prompt</title>
+        <link rel="stylesheet" href="../../static/home_style_for_all_pages.css">
+        <link rel="stylesheet" href="../../static/prompt_pages_static/display_prompt_details.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1>Prompt Details</h1>
+        <div class="prompt-container">
+            <div class="prompt-body">
+                <p><strong>Display name: </strong>{{ prompt.display_name }}</p>
+                <p><strong>Prompt name: </strong>{{ prompt.prompt_name }}</p>
+                <p><strong>Prompt type: </strong>{{ prompt.prompt_type }}</p>
+                <p><strong>Prompt text: </strong>{{ prompt.prompt}}</p>
+                <p><strong>Succes rating: </strong>{{ prompt.succes_rating }}</p>
+                <p><strong>Number of questions: </strong>{{ prompt.questions_count }}</p>
+                <p><strong>Number of correct questions: </strong>{{ prompt.questions_correct }}</p>
+            </div>
+            <div class="button-container">
+                <a href="{{ url_for('update_prompt', prompts_id=prompt.prompts_id, prompt_name=prompt.prompt_name) }}">
+                            <button onclick>Update prompt</button></a>
+
+                <form action="{{ url_for('confirm_delete_prompt', prompts_id=prompt.prompts_id) }}" method="GET">
+                    <input type="hidden" name="prompt_id" value="{{ prompt.prompts_id }}">
+                    <button type="submit">Delete prompt</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

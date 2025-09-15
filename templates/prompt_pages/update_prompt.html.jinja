@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>update prompt</title>
+    <link rel="stylesheet" href="../../static/prompt_pages_static/add_new_prompt_page.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Create a New Prompt</h1>
+        <div class="prompt-container">
+            <form action="/prompts/update/submit" method="post">
+
+                <label for="prompt_name">Prompt-name:</label>
+                <input name="prompt_name" id="prompt_name" required value="{{ prompt.prompt_name }}"><br>
+
+                <label for="prompt_text">Prompt-text:</label>
+                <textarea name="prompt_text" id="prompt_text" required>{{ prompt.prompt }}</textarea><br>
+
+                <input type="hidden" value="{{ prompt.prompt_type }}" name="prompt_type">
+
+                <input type="submit" value="submit">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% extends '/base.html.jinja' %}
+{% block main %}
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nieuwe Redacteur</title>
+    <link rel="stylesheet" href="../../static/add_redacteur.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Nieuwe redacteur</h2>
+        <form action="/add_redacteur/submit" method="post">
+            <label for="naam">Naam</label>
+            <input type="text" id="naam" name="naam" required>
+
+            <label for="email">Email / login</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="wachtwoord">Wachtwoord</label>
+            <input type="password" id="wachtwoord" name="wachtwoord" required>
+            <div class="admin-field">
+                <label for="is_admin">Is admin?</label>
+                <label class="switch">
+                    <input type="checkbox" id="is_admin" name="is_admin">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            <button type="submit" class="submit-btn">Opslaan</button>
+        </form>
+    </div>
+</body>
+</html>
+{% endblock %}

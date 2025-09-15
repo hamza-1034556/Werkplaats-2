@@ -1,0 +1,106 @@
+{% extends '/base.html.jinja' %}
+{% block main %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>questions</title>
+    <link rel="stylesheet" href="../../static/questions_pages_static/question_style.css"/>
+    <!--Hier mogelijk link plaatsen naar css-->
+</head>
+
+<body>
+<h1>Toetsvragen</h1>
+
+<form method="GET" action="{{ url_for('question_page') }}">
+    <label for="importeer toetsvragen"><a href="/import">Importeer toetsvragen</a></label>
+
+    <label for="searching">Zoekwoord: </label>
+    <input id="searching" type="text" name="searching" value="{{ request.args.get('searching', '') }}">
+
+    <label for="subject">Kies een vak: </label>
+    <select id="subject" name="subject">
+        <option value="">Kies een vak</option>
+        <option value="biologie" {% if request.args.get('subject') == 'biologie' %} selected {% endif %}>Biologie</option>
+        <option value="geschiedenis" {% if request.args.get('subject') == 'geschiedenis' %} selected {% endif %}>Geschiedenis</option>
+        <option value="aardrijkskunde" {% if request.args.get('subject') == 'aardrijkskunde' %} selected {% endif %}>Aardrijkskunde</option>
+        <option value="natuurkunde" {% if request.args.get('subject') == 'natuurkunde' %} selected {% endif %}>Natuurkunde</option>
+        <option value="scheikunde" {% if request.args.get('subject') == 'scheikunde' %} selected {% endif %}>Scheikunde</option>
+        <option value="maatschappijleer" {% if request.args.get('subject') == 'maatschappijleer' %} selected {% endif %}>Maatschappijleer</option>
+        <option value="wiskunde a" {% if request.args.get('subject') == 'wiskunde A' %} selected {% endif %}>Wiskunde A</option>
+        <option value="wiskunde b" {% if request.args.get('subject') == 'wiskunde B' %} selected {% endif %}>Wiskunde B</option>
+    </select>
+
+    <label for="school_year">Kies een leerjaar: </label>
+    <select id="school_year" name="school_year">
+        <option value="">Kies een leerjaar</option>
+        <option value="1" {% if request.args.get('school_year') == '1' %} selected {% endif %}>Jaar 1</option>
+        <option value="2" {% if request.args.get('school_year') == '2' %} selected {% endif %}>Jaar 2</option>
+        <option value="3" {% if request.args.get('school_year') == '3' %} selected {% endif %}>Jaar 3</option>
+        <option value="4" {% if request.args.get('school_year') == '4' %} selected {% endif %}>Jaar 4</option>
+        <option value="5" {% if request.args.get('school_year') == '5' %} selected {% endif %}>Jaar 5</option>
+    </select>
+
+    <label for="education_level"> kies school niveau: </label>
+    <select id="education_level" name="education_level">
+        <option value="">Kies school niveau</option>
+        <option value="havo" {% if request.args.get('education_level') == 'havo' %} selected {% endif %}>Havo</option>
+        <option value="vwo" {% if request.args.get('education_level') == 'vwo' %} selected {% endif %}>Vwo</option>
+    </select>
+
+    <button type="submit" class="ververs-button">Ververs</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Vraag</th>
+            <th>vak</th>
+            <th>leerjaar</th>
+            <th>niveau</th>
+            <th>Invoer datum</th>
+            <th>Taxonomie Bloom</th>
+            <th>RTTI</th>
+
+        </tr>
+    </thead>
+    <tbody class="questiontablebody">
+        {% for question in questions %}
+        <tr>
+            <td>{{ question.question }}</td>
+            <td>{{ question.subject }}</td>
+            <td>{{ question.school_year }}</td>
+            <td>{{ question.education_level }}</td>
+            <td>{{ question.date_created }}</td>
+            <td>
+                {% if not question.taxonomy_bloom %}
+                    <a href="/taxonomy/index/{{ question.questions_id }}/Bloom" class='index'>Indexeer (Bloom) </a>
+                {% else %}
+                    {{ question.taxonomy_bloom }}
+                {% endif %}
+            </td>
+            <td>
+                {% if not question.rtti %}
+                    <a href="/taxonomy/index/{{ question.questions_id }}/RTTI" class='index'>Indexeer (RTTI) </a>
+                {% else %}
+                    {{ question.rtti }}
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div class="pagenavigation">
+        {% if page > 0 %}
+        <a href="/questions?page={{ page - 1 }}" class="vorige">&laquo; Vorige</a>
+        {% endif %}
+        <a href="/questions?page={{ page + 1 }}" class="volgende">&raquo; Volgende</a>
+    </div>
+
+<a href="/export">
+  <button class="export-button">Exporteren naar Test-Correct</button>
+</a>
+
+</body>
+</html>
+{% endblock %}

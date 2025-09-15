@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>questions</title>
+    <link rel="stylesheet" href="../../static/questions_pages_static/question_style.css"/>
+    <!--Hier mogelijk link plaatsen naar css-->
+</head>
+
+<body>
+<nav class="navigationbar">
+    <div class="navigationelements">
+        <div class="logo"> <a href="#">TestCorrect</a> </div>
+        <ul>
+            <li><a href="#">Alle vragen</a></li>
+            <li><a href="#">AI prompts</a></li>
+            <li><a href="#">Redacteuren</a></li>
+        </ul>
+    </div>
+</nav>
+
+<h1>Beoordeelde toetsvragen</h1>
+
+<form>
+    <label for="searching">zoekwoord</label>
+    <input id="searching" type="text">
+
+    <label for="vak">Kies een vak:</label>
+    <select id="vak" name="vak">
+        <option value="biologie">Biologie</option>
+        <option value="geschiedenis">Geschiedenis</option>
+        <option value="aardrijkskunde">Aardrijkskunde</option>
+        <option value="natuurkunde">Natuurkunde</option>
+    </select>
+    <label for="leerjaar">Kies een leerjaar:</label>
+    <select id="leerjaar" name="leerjaar">
+        <option value="1">Jaar 1</option>
+        <option value="2">Jaar 2</option>
+        <option value="3">Jaar 3</option>
+        <option value="4">Jaar 4</option>
+        <option value="5">Jaar 5</option>
+    </select>
+    <button class="ververs-button">Ververs</button>
+</form>
+<br>
+<br>
+
+<table class="questiontable">
+    <thead>
+        <tr>
+            <th style="width: 600px;">Vraag</th>
+            <th style="width: 150px;">Vak</th>
+            <th style="width: 150px;">Leerjaar</th>
+            <th style="width: 150px;">Taxonomie</th>
+        </tr>
+    </thead>
+    <tbody class="questiontablebody">
+        {% for item in data %}
+            {% if taxonomie %}
+            <tr>
+                <td>{{ item["question"] }}</td>
+                <td>{{ item["vak"] }}</td>
+                <td>{{ item["leerjaar"] }}</td>
+            </tr>
+            {% else %}
+                {{pass}}
+            {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+<br>
+<button class="export-button">Exporteer naar Test-Correct</button>
+</body>
+</html>

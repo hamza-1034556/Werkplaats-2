@@ -1,0 +1,35 @@
+{% extends '/base.html.jinja' %}
+{% block main %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm delete prompt</title>
+        <link rel="stylesheet" href="../../static/home_style_for_all_pages.css">
+        <link rel="stylesheet" href="../../static/prompt_pages_static/confirm_delete_page.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Bevestig Verwijdering</h1>
+        <div class="confirm-container">
+            <div class="confirmation-message-container">
+                <p>Weet je zeker dat je deze prompt wil verwijderen?</p>
+                <p><strong>Prompt naam: </strong>{{ prompt.prompt_name }}</p>
+                <p><strong>Prompt type: </strong>{{ prompt.prompt_type }}</p>
+                <p><strong>Prompt: </strong>{{ prompt.prompt }}</p>
+                <p><strong>Questions count: </strong>{{ prompt.questions_count }}</p>
+                <p><strong>Succes rating: </strong>{{ prompt.succes_rating }}</p>
+
+
+                <form action="{{ url_for('delete_prompt', prompts_id=prompt.prompts_id) }}" method="POST">
+                    <button type="submit">Ja, verwijder</button>
+                </form>
+                <a href="{{ url_for('show_prompts') }}">
+                    <button>Nee, annuleer</button></a>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

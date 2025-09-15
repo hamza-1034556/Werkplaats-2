@@ -1,0 +1,28 @@
+{% extends 'base.html.jinja' %}
+{% block main %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='feedback_style.css') }}"/>
+</head>
+<body>
+    <div>
+        <h1>Feedback</h1>
+
+        <p>Zie je nog iets wat we kunnen verbeteren, laat het ons weten:</p>
+
+        <form method="post">
+            <label for="feedback-title">Titel:</label>
+            <input type='text' id = "feedback-title-input" name="feedback-title-input">
+
+            <label for="feedback">Verbeterpunten:</label>
+            <textarea id="feedback-input" name="feedback-input"> </textarea>
+
+            <input type="submit" class="feedback-button" value="Verzenden">
+        </form>
+    </div>
+    </body>
+    </html>
+{% endblock %}

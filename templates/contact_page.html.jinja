@@ -1,0 +1,61 @@
+{% extends 'base.html.jinja' %}
+{% block main %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>contact page</title>
+    <link rel="stylesheet" href="../static/contact_page.css"/>
+</head>
+<body>
+    <div class="divScroll">
+        <div class="contact-container">
+            <form action="/contact_page" method="POST" class="contact-left">
+                <div class="contact-left-title">
+                    <h2>Get in Touch</h2>
+                    <hr>
+                </div>
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Your Name"
+                    class="contact-inputs"
+                    minlength="2"
+                    required
+                    title="Name must be at least 2 characters long.">
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Your Email"
+                    class="contact-inputs"
+                    minlength="4"
+                    required
+                    title="Email must be at least 4 characters long and a valid email address.">
+                <textarea
+                    name="message"
+                    placeholder="Your Message"
+                    class="contact-inputs"
+                    minlength="10"
+                    required
+                    title="Message must be at least 10 characters long."></textarea>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-messages">
+            <ul>
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+         </div>
+    {% endif %}
+    {% endwith %}
+</body>
+</html>
+{% endblock %}

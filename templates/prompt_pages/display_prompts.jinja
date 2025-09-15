@@ -1,0 +1,81 @@
+{% extends '/base.html.jinja' %}
+{% block main %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>show prompt</title>
+    <link rel="stylesheet" href="../../static/home_style_for_all_pages.css">
+    <link rel="stylesheet" href="../../static/prompt_pages_static/display_prompts.css">
+</head>
+<body>
+  <h1>Prompt Details</h1>
+    <div class="container">
+        <!-- Container with filters -->
+        <div class="filter-container">
+            <h2>Filters</h2>
+            <form method="GET" action="{{ url_for('show_prompts') }}">
+                <div class="filter-checkbox-group">
+                    <label>Sorteer op alfabetische volgorde<input type="checkbox" name="FilterByAlphabeticalOrder"
+                                {% if request.args.get('FilterByAlphabeticalOrder') %} checked {% endif %}>
+                    </label>
+                    <hr>
+                    <label>Sorteer op succes rating<input type="checkbox" name="FilterBySuccesRating"
+                                {% if request.args.get('FilterBySuccesRating') %} checked {% endif %}>
+                    </label>
+                    <hr>
+                    <label>Sorteer op het aantal beoordeelde vragen<input type="checkbox" name="FilterByQuestionsCount"
+                                {% if request.args.get('FilterByQuestionsCount') %} checked {% endif %}>
+                    </label>
+                    <hr>
+                    <label>Sorteer op het type prompt<input type="checkbox" name="FilterByPromptType"
+                                {% if request.args.get('FilterByPromptType') %} checked {% endif %}>
+                    </label>
+
+                    <button type="submit">Pas filters toe</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- container with a list of prompts -->
+        <div class="prompt-list-container">
+            <h2>Prompts</h2>
+            {% if prompts %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Prompt naam</th>
+                        <th>Prompt type</th>
+                        <th>Redacteur</th>
+                        <th>Toetsvragen ingedeeld</th>
+                        <th>Succes percentage</th>
+                        <th>Acties</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for prompt in prompts %}
+                    <tr>
+                        <td>{{ prompt.prompt_name }}</td>
+                        <td>{{ prompt.prompt_type }}</td>
+                        <td>{{ prompt.display_name }}</td>
+                        <td>{{ prompt.questions_count }}</td>
+                        <td>{{ prompt.succes_rating }}%</td>
+                        <td><a href="{{ url_for('prompt_details', prompts_id=prompt.prompts_id) }}">
+                            <button onclick>Details</button></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>No prompts found</p>
+            {% endif %}
+            <a href="{{ url_for('add_prompt') }}">
+                <button onclick>Nieuwe prompt toevoegen</button>
+            </a>
+
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

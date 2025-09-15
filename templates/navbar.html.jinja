@@ -1,0 +1,29 @@
+{% block main %}
+
+<div class="navbar" id="navbar">
+    <a href="{{ url_for('homepage') }}"><i class="fas fa-home"></i><span class="nav-text">Home</span></a>
+        <div class="dropdown">
+            <a href="{{ url_for('show_prompts') }}" class="dropbtn"><i class="fas fa-file"></i><span class="nav-text">Prompts</span></a>
+
+            <div class="dropdown-content">
+                <a href="{{ url_for('add_prompt') }}">Add Prompt</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="{{ url_for('question_page') }}" class="dropbtn"><i class="fas fa-clipboard"></i><span class="nav-text">Vraagbank</span></a>
+            <div class="dropdown-content">
+
+            </div>
+        </div>
+    <a href="{{ url_for('login_page') }}"><i class="fas fa-bar-chart"></i><span class="nav-text">GPT</span></a>
+    <a href="{{ url_for('question_page') }}"><i class="fas fa-star"></i><span class="nav-text">Reviews</span></a>
+        <div class="dropdown">
+            <a href="#" class="dropbtn"><i class="fas fa-user"></i><span class="nav-text">Account</span></a>
+            <div class="dropdown-content">
+                <a href="{{ url_for('homepage') }}">Setting</a>
+                <a href="{{ url_for('logout') }}">Log out</a>
+            </div>
+        </div>
+</div>
+
+{% endblock %}

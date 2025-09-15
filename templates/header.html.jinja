@@ -1,0 +1,26 @@
+{% block main %}
+<header>
+    <div class="logo">
+        <a href="{{ url_for('homepage') }}">
+            <img src="{{ url_for('static', filename='images/test-correct.png') }}" alt="Test-correct">
+        </a>
+    </div>
+    <div class="account">
+        {% if session.get('user') %}
+            {% if session['user'].get('is_admin') %}
+                <a href="{{ url_for('redacteur') }}">Redacteuren</a>
+            {% endif %}
+        {% endif %}
+    </div>
+</header>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class="flashes">
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% endblock %}
