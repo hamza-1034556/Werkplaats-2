@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect, flash, url_for, send_file
+from flask import Flask, render_template, request, session, redirect, flash, url_for, send_file, make_response
 from flask_mail import Mail, Message
 from model.feedback_model import Feedback
 from model.question_modules import Questions
@@ -131,7 +131,10 @@ def homepage():
     if session.get('login'):
         return render_template('homepage.html.jinja')
     else:
-        return redirect(url_for('login_page'))
+        # return redirect(url_for('login_page'))
+        resp = make_response(redirect(url_for('login_page')))
+        resp.headers['server'] = 'ASD'
+        return resp
 
 #add-redacteur
 @app.route('/add_redacteur')
@@ -251,7 +254,11 @@ def login_page():
                 'is_admin': user['is_admin'],
             }
             return redirect(url_for('homepage'))
-    return render_template('login-page.html.jinja')
+    # return render_template('login-page.html.jinja')
+    resp = make_response(render_template('login-page.html.jinja'))
+    resp.headers['server'] = 'ASD'
+    return resp
+
 
 
 #questions
